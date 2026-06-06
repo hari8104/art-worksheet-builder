@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Print styles */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: white !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  .no-print-container {
+    background: white !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .worksheet-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 12mm !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+
+  .practice-box {
+    border: 1px solid #1e293b !important;
+    break-inside: avoid;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
+
+/* Screen only - hide print-only content */
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
