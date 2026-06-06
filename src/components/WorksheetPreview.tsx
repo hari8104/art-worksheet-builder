@@ -9,10 +9,10 @@ interface WorksheetPreviewProps {
 
 export default function WorksheetPreview({ config, activePage, onUpdateBox }: WorksheetPreviewProps) {
   return (
-    <main className="flex-1 overflow-auto bg-slate-300 p-8 no-print-container">
+    <main className="flex-1 overflow-auto bg-slate-300 p-2 lg:p-8 no-print-container">
       {/* Screen view: show only active page */}
-      <div className="no-print flex justify-center">
-        <div className="transform-gpu">
+      <div className="no-print flex justify-center items-start py-4">
+        <div className="transform-gpu" style={{ transform: 'scale(0.6)', transformOrigin: 'top center', maxWidth: '100%' }}>
           <WorksheetPage
             config={config}
             page={config.pages[activePage]}

@@ -90,7 +90,7 @@ export default function WorksheetPage({
           <img
             src={config.watermarkUrl}
             alt="Watermark"
-            style={{ opacity: 0.08, maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
+            style={{ opacity: config.watermarkOpacity, maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
           />
         </div>
       )}
@@ -99,7 +99,7 @@ export default function WorksheetPage({
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 1 }}>
           <span
             className="text-slate-200 font-extrabold text-4xl tracking-widest select-none"
-            style={{ transform: 'rotate(-30deg)', opacity: 0.4 }}
+            style={{ transform: 'rotate(-30deg)', opacity: config.watermarkOpacity * 4 }}
           >
             {config.schoolName.split(' ')[0]}
           </span>

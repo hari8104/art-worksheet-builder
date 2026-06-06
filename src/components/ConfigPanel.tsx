@@ -128,7 +128,7 @@ export default function ConfigPanel({
   ];
 
   return (
-    <aside className="w-72 bg-white border-r border-slate-200 overflow-y-auto flex-shrink-0 no-print">
+    <aside className="w-full lg:w-72 bg-white border-b lg:border-r lg:border-b-0 border-slate-200 overflow-y-auto flex-shrink-0 no-print lg:max-h-full max-h-64">
       <div className="p-4 space-y-6">
 
         {/* Header Settings */}
@@ -209,6 +209,20 @@ export default function ConfigPanel({
                 />
               </button>
             </div>
+            {config.showWatermark && (
+              <div>
+                <Label>Watermark Opacity: {Math.round(config.watermarkOpacity * 100)}%</Label>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={config.watermarkOpacity}
+                  onChange={e => onUpdateConfig({ watermarkOpacity: Number(e.target.value) })}
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-500"
+                />
+              </div>
+            )}
           </div>
         </section>
 

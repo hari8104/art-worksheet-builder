@@ -37,6 +37,7 @@ const defaultConfig: WorksheetConfig = {
   logoUrl: null,
   watermarkUrl: null,
   showWatermark: true,
+  watermarkOpacity: 0.08,
   studentClass: 'BUDS | BLOOSM',
   pages: [createDefaultPage()],
 };
@@ -115,7 +116,7 @@ export default function App() {
         onSelectPage={setActivePage}
         onRemovePage={removePage}
       />
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
         <ConfigPanel
           config={config}
           activePage={activePage}

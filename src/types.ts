@@ -24,6 +24,7 @@ export interface WorksheetConfig {
   logoUrl: string | null;
   watermarkUrl: string | null;
   showWatermark: boolean;
+  watermarkOpacity: number;
   studentClass: string;
   pages: PageConfig[];
 }
