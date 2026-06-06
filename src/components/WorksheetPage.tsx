@@ -1,4 +1,4 @@
-import { Instagram } from 'lucide-react';
+import { Instagram, Calendar, User } from 'lucide-react';
 import type { WorksheetConfig, PageConfig, BoxConfig } from '../types';
 import PracticeBox from './PracticeBox';
 
@@ -63,17 +63,23 @@ export default function WorksheetPage({
           <div className="border-t border-slate-300 mb-3" />
 
           <div className="flex items-center gap-4 text-xs">
-            <div className="flex items-center gap-2 flex-1">
-              <span className="font-semibold text-slate-700 uppercase tracking-wide">Name:</span>
-              <div className="flex-1 border-b border-dashed border-slate-400 min-w-[120px]" />
-            </div>
-            <div className="px-4 py-1 border-2 border-slate-800 font-bold text-slate-800 text-xs whitespace-nowrap">
+            {config.showNameField && (
+              <div className="flex items-center gap-2 flex-1">
+                <User size={12} className="text-slate-600 flex-shrink-0" />
+                <span className="font-semibold text-slate-700 uppercase tracking-wide whitespace-nowrap">Name:</span>
+                <div className="flex-1 border-b border-dashed border-slate-400 min-w-[80px]" />
+              </div>
+            )}
+            <div className="px-4 py-1 border-2 border-slate-800 font-bold text-slate-800 text-xs whitespace-nowrap flex-shrink-0">
               {config.studentClass}
             </div>
-            <div className="flex items-center gap-2 flex-1 justify-end">
-              <span className="font-semibold text-slate-700 uppercase tracking-wide">Date:</span>
-              <div className="border-b border-dashed border-slate-400 min-w-[100px]" />
-            </div>
+            {config.showDateField && (
+              <div className="flex items-center gap-2 flex-1 justify-end">
+                <Calendar size={12} className="text-slate-600 flex-shrink-0" />
+                <span className="font-semibold text-slate-700 uppercase tracking-wide whitespace-nowrap">Date:</span>
+                <div className="border-b border-dashed border-slate-400 min-w-[80px]" />
+              </div>
+            )}
           </div>
         </header>
       )}
@@ -84,33 +90,10 @@ export default function WorksheetPage({
         </div>
       )}
 
-      {/* Watermark */}
-      {config.showWatermark && config.watermarkUrl && (
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 1 }}>
-          <img
-            src={config.watermarkUrl}
-            alt="Watermark"
-            style={{ opacity: config.watermarkOpacity, maxWidth: '60%', maxHeight: '60%', objectFit: 'contain' }}
-          />
-        </div>
-      )}
-
-      {config.showWatermark && !config.watermarkUrl && (
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 1 }}>
-          <span
-            className="text-slate-200 font-extrabold text-4xl tracking-widest select-none"
-            style={{ transform: 'rotate(-30deg)', opacity: config.watermarkOpacity * 4 }}
-          >
-            {config.schoolName.split(' ')[0]}
-          </span>
-        </div>
-      )}
-
       {/* Grid — stretches to fill remaining page height */}
       <div
         style={{
           position: 'relative',
-          zIndex: 2,
           flex: 1,
           display: 'grid',
           gridTemplateColumns: `repeat(${page.cols}, 1fr)`,
@@ -126,6 +109,28 @@ export default function WorksheetPage({
             onUpdate={(updates) => onUpdateBox(boxIndex, updates)}
           />
         ))}
+
+        {/* Watermark overlay - appears on top of boxes */}
+        {config.showWatermark && config.watermarkUrl && (
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 10 }}>
+            <img
+              src={config.watermarkUrl}
+              alt="Watermark"
+              style={{ opacity: config.watermarkOpacity, maxWidth: '80%', maxHeight: '80%', objectFit: 'contain' }}
+            />
+          </div>
+        )}
+
+        {config.showWatermark && !config.watermarkUrl && (
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ zIndex: 10 }}>
+            <span
+              className="text-slate-400 font-extrabold text-6xl tracking-widest select-none"
+              style={{ transform: 'rotate(-30deg)', opacity: config.watermarkOpacity * 5 }}
+            >
+              {config.schoolName.split(' ')[0]}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

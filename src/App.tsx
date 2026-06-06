@@ -39,6 +39,9 @@ const defaultConfig: WorksheetConfig = {
   showWatermark: true,
   watermarkOpacity: 0.08,
   studentClass: 'BUDS | BLOOSM',
+  showNameField: true,
+  showDateField: true,
+  darkMode: false,
   pages: [createDefaultPage()],
 };
 
@@ -107,7 +110,11 @@ export default function App() {
   }, [config.pages.length]);
 
   return (
-    <div className="flex flex-col h-screen bg-slate-100 overflow-hidden">
+    <div className={`flex flex-col h-screen overflow-hidden transition-colors ${
+      config.darkMode
+        ? 'bg-slate-900 text-slate-100'
+        : 'bg-slate-100 text-slate-900'
+    }`}>
       <Toolbar
         config={config}
         activePage={activePage}

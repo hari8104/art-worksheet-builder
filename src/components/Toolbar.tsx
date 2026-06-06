@@ -23,17 +23,21 @@ export default function Toolbar({
   };
 
   return (
-    <header className="bg-white border-b border-slate-200 px-2 lg:px-4 py-2 lg:py-3 flex items-center justify-between shadow-sm no-print flex-wrap gap-2 lg:gap-0">
+    <header className={`px-2 lg:px-4 py-2 lg:py-3 flex items-center justify-between shadow-sm no-print flex-wrap gap-2 lg:gap-0 transition-colors border-b ${
+      config.darkMode
+        ? 'bg-slate-800 border-slate-700 text-slate-100'
+        : 'bg-white border-slate-200 text-slate-900'
+    }`}>
       <div className="flex items-center gap-2 lg:gap-3">
         <div className="flex items-center gap-1 lg:gap-2">
           <div className="w-6 lg:w-8 h-6 lg:h-8 bg-rose-500 rounded-lg flex items-center justify-center flex-shrink-0">
             <FileText size={14} className="text-white lg:w-4 lg:h-4" />
           </div>
           <div className="hidden lg:block">
-            <h1 className="text-sm font-bold text-slate-800 leading-none">Art Worksheet Studio</h1>
-            <p className="text-xs text-slate-400 mt-0.5">Worksheet Builder</p>
+            <h1 className={`text-sm font-bold leading-none ${config.darkMode ? 'text-slate-100' : 'text-slate-800'}`}>Art Worksheet Studio</h1>
+            <p className={`text-xs mt-0.5 ${config.darkMode ? 'text-slate-400' : 'text-slate-400'}`}>Worksheet Builder</p>
           </div>
-          <h1 className="text-xs lg:hidden font-bold text-slate-800">Worksheet</h1>
+          <h1 className={`text-xs lg:hidden font-bold ${config.darkMode ? 'text-slate-100' : 'text-slate-800'}`}>Worksheet</h1>
         </div>
 
         <div className="w-px h-6 lg:h-8 bg-slate-200 mx-1 hidden lg:block" />
@@ -46,6 +50,8 @@ export default function Toolbar({
                 className={`flex items-center gap-1 px-2 lg:px-3 py-1 lg:py-1.5 rounded-md text-xs font-medium transition-all whitespace-nowrap ${
                   activePage === i
                     ? 'bg-rose-50 text-rose-600 border border-rose-200'
+                    : config.darkMode
+                    ? 'text-slate-400 hover:bg-slate-700 hover:text-slate-200'
                     : 'text-slate-500 hover:bg-slate-100 hover:text-slate-700'
                 }`}
               >
@@ -69,7 +75,11 @@ export default function Toolbar({
 
           <button
             onClick={onAddPage}
-            className="flex items-center gap-1 px-2 lg:px-3 py-1 lg:py-1.5 rounded-md text-xs font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-700 border border-dashed border-slate-300 transition-all ml-1 flex-shrink-0"
+            className={`flex items-center gap-1 px-2 lg:px-3 py-1 lg:py-1.5 rounded-md text-xs font-medium border border-dashed transition-all ml-1 flex-shrink-0 ${
+              config.darkMode
+                ? 'text-slate-400 hover:bg-slate-700 hover:text-slate-200 border-slate-600'
+                : 'text-slate-500 hover:bg-slate-100 hover:text-slate-700 border-slate-300'
+            }`}
           >
             <Plus size={12} />
             <span className="hidden lg:inline">Add</span>
