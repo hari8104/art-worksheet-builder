@@ -39,8 +39,8 @@ const defaultConfig: WorksheetConfig = {
   showWatermark: true,
   watermarkOpacity: 0.08,
   studentClass: 'BUDS | BLOOSM',
-  showNameField: true,
-  showDateField: true,
+  studentName: '',
+  studentDate: '',
   darkMode: false,
   pages: [createDefaultPage()],
 };

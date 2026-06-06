@@ -204,35 +204,23 @@ export default function ConfigPanel({
                 darkMode={config.darkMode}
               />
             </div>
-            <div className="flex items-center justify-between py-1">
-              <span className={`text-xs font-medium ${config.darkMode ? 'text-slate-400' : 'text-slate-600'}`}>Show Name Field</span>
-              <button
-                onClick={() => onUpdateConfig({ showNameField: !config.showNameField })}
-                className={`relative w-10 h-5 rounded-full transition-colors ${
-                  config.showNameField ? 'bg-rose-500' : 'bg-slate-300'
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                    config.showNameField ? 'translate-x-5' : 'translate-x-0.5'
-                  }`}
-                />
-              </button>
+            <div>
+              <Label darkMode={config.darkMode}>Student Name (Optional)</Label>
+              <Input
+                value={config.studentName}
+                onChange={v => onUpdateConfig({ studentName: v })}
+                placeholder="Leave empty to hide"
+                darkMode={config.darkMode}
+              />
             </div>
-            <div className="flex items-center justify-between py-1">
-              <span className="text-xs font-medium text-slate-600">Show Date Field</span>
-              <button
-                onClick={() => onUpdateConfig({ showDateField: !config.showDateField })}
-                className={`relative w-10 h-5 rounded-full transition-colors ${
-                  config.showDateField ? 'bg-rose-500' : 'bg-slate-300'
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                    config.showDateField ? 'translate-x-5' : 'translate-x-0.5'
-                  }`}
-                />
-              </button>
+            <div>
+              <Label darkMode={config.darkMode}>Student Date (Optional)</Label>
+              <Input
+                value={config.studentDate}
+                onChange={v => onUpdateConfig({ studentDate: v })}
+                placeholder="Leave empty to hide"
+                darkMode={config.darkMode}
+              />
             </div>
           </div>
         </section>
@@ -357,12 +345,12 @@ export default function ConfigPanel({
             <button
               onClick={() => onUpdateConfig({ darkMode: !config.darkMode })}
               className={`relative w-10 h-5 rounded-full transition-colors ${
-                config.darkMode ? 'bg-rose-500' : 'bg-slate-300'
+                !config.darkMode ? 'bg-rose-500' : 'bg-slate-600'
               }`}
             >
               <span
                 className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                  config.darkMode ? 'translate-x-5' : 'translate-x-0.5'
+                  !config.darkMode ? 'translate-x-5' : 'translate-x-0.5'
                 }`}
               />
             </button>

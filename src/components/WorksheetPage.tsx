@@ -63,21 +63,25 @@ export default function WorksheetPage({
           <div className="border-t border-slate-300 mb-3" />
 
           <div className="flex items-center gap-4 text-xs">
-            {config.showNameField && (
+            {config.studentName && (
               <div className="flex items-center gap-2 flex-1">
                 <User size={12} className="text-slate-600 flex-shrink-0" />
                 <span className="font-semibold text-slate-700 uppercase tracking-wide whitespace-nowrap">Name:</span>
-                <div className="flex-1 border-b border-dashed border-slate-400 min-w-[80px]" />
+                <div className="flex-1 border-b border-dashed border-slate-400 flex items-center px-1">
+                  <span className="text-slate-700">{config.studentName}</span>
+                </div>
               </div>
             )}
             <div className="px-4 py-1 border-2 border-slate-800 font-bold text-slate-800 text-xs whitespace-nowrap flex-shrink-0">
               {config.studentClass}
             </div>
-            {config.showDateField && (
+            {config.studentDate && (
               <div className="flex items-center gap-2 flex-1 justify-end">
                 <Calendar size={12} className="text-slate-600 flex-shrink-0" />
                 <span className="font-semibold text-slate-700 uppercase tracking-wide whitespace-nowrap">Date:</span>
-                <div className="border-b border-dashed border-slate-400 min-w-[80px]" />
+                <div className="border-b border-dashed border-slate-400 flex items-center px-1">
+                  <span className="text-slate-700">{config.studentDate}</span>
+                </div>
               </div>
             )}
           </div>
