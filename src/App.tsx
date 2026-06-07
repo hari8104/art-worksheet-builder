@@ -116,7 +116,7 @@ export default function App() {
         onSelectPage={setActivePage}
         onRemovePage={removePage}
       />
-      <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
+      <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
         <ConfigPanel
           config={config}
           activePage={activePage}

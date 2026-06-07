@@ -14,15 +14,15 @@ interface ConfigPanelProps {
 
 function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
   return (
-    <div className="flex items-center gap-2 mb-3">
-      <span className="text-rose-500">{icon}</span>
-      <h3 className="text-xs font-semibold text-slate-700 uppercase tracking-wider">{title}</h3>
+    <div className="flex items-center gap-2 mb-2 md:mb-3">
+      <span className="text-rose-500 flex-shrink-0">{icon}</span>
+      <h3 className="text-xs font-semibold text-slate-700 uppercase tracking-wider line-clamp-1">{title}</h3>
     </div>
   );
 }
 
 function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-xs font-medium text-slate-600 mb-1">{children}</label>;
+  return <label className="block text-xs font-medium text-slate-600 mb-1.5 md:mb-1 truncate">{children}</label>;
 }
 
 function Input({ value, onChange, placeholder, className = '' }: {
@@ -37,7 +37,7 @@ function Input({ value, onChange, placeholder, className = '' }: {
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className={`w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-rose-400 bg-white transition-all ${className}`}
+      className={`w-full px-2.5 md:px-3 py-1.5 md:py-2 text-xs md:text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-rose-400 bg-white transition-all ${className}`}
     />
   );
 }
@@ -55,7 +55,7 @@ function NumberInput({ value, onChange, min, max }: {
       min={min}
       max={max}
       onChange={e => onChange(Number(e.target.value))}
-      className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-rose-400 bg-white text-center font-medium transition-all"
+      className="w-full px-2.5 md:px-3 py-1.5 md:py-2 text-xs md:text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-rose-400 bg-white text-center font-medium transition-all"
     />
   );
 }
@@ -83,20 +83,20 @@ function ImageUploadField({
     <div>
       <Label>{label}</Label>
       {value ? (
-        <div className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg border border-slate-200">
-          <img src={value} alt={label} className="w-10 h-10 object-contain rounded" />
+        <div className="flex items-center gap-1.5 md:gap-2 p-2 bg-slate-50 rounded-lg border border-slate-200">
+          <img src={value} alt={label} className="w-8 md:w-10 h-8 md:h-10 object-contain rounded flex-shrink-0" />
           <span className="text-xs text-slate-500 flex-1 truncate">Image uploaded</span>
           <button
             onClick={() => onChange(null)}
-            className="text-red-400 hover:text-red-600 transition-colors"
+            className="text-red-400 hover:text-red-600 transition-colors flex-shrink-0"
           >
-            <Trash2 size={14} />
+            <Trash2 size={12} className="md:w-3.5 md:h-3.5" />
           </button>
         </div>
       ) : (
         <button
           onClick={() => inputRef.current?.click()}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2.5 border-2 border-dashed border-slate-300 rounded-lg text-xs text-slate-500 hover:border-rose-400 hover:text-rose-500 hover:bg-rose-50 transition-all"
+          className="w-full flex items-center justify-center gap-1.5 md:gap-2 px-2 md:px-3 py-2 md:py-2.5 border-2 border-dashed border-slate-300 rounded-lg text-xs text-slate-500 hover:border-rose-400 hover:text-rose-500 hover:bg-rose-50 transition-all"
         >
           <Upload size={14} />
           Click to upload
@@ -128,13 +128,13 @@ export default function ConfigPanel({
   ];
 
   return (
-    <aside className="w-full lg:w-72 bg-white border-b lg:border-r lg:border-b-0 border-slate-200 overflow-y-auto flex-shrink-0 no-print lg:max-h-full max-h-64">
-      <div className="p-4 space-y-6">
+    <aside className="w-full md:w-80 bg-white border-b md:border-r md:border-b-0 border-slate-200 overflow-y-auto flex-shrink-0 no-print md:max-h-full max-h-screen">
+      <div className="p-3 md:p-4 space-y-4 md:space-y-6">
 
         {/* Header Settings */}
         <section>
           <SectionHeader icon={<Type size={14} />} title="Header" />
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             <div>
               <Label>School / Studio Name</Label>
               <Input
@@ -183,7 +183,7 @@ export default function ConfigPanel({
         {/* Branding */}
         <section>
           <SectionHeader icon={<Image size={14} />} title="Branding" />
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             <ImageUploadField
               label="Header Logo"
               value={config.logoUrl}
@@ -231,7 +231,7 @@ export default function ConfigPanel({
         {/* Grid Settings */}
         <section>
           <SectionHeader icon={<Grid size={14} />} title={`Page ${activePage + 1} Layout`} />
-          <div className="space-y-3">
+          <div className="space-y-2 md:space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label>Rows</Label>
