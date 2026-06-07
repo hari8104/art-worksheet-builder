@@ -26,8 +26,5 @@ export interface WorksheetConfig {
   showWatermark: boolean;
   watermarkOpacity: number;
   studentClass: string;
-  studentName: string;
-  studentDate: string;
-  darkMode: boolean;
   pages: PageConfig[];
 }
