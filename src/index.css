@@ -41,7 +41,7 @@
   }
 
   .practice-box {
-    border: 1px solid #1e293b !important;
+    border: 3px double #1e293b !important;
     break-inside: avoid;
   }
 
@@ -55,6 +55,10 @@
 @media screen {
   .print-only {
     display: none !important;
+  }
+
+  .practice-box {
+    border: 3px double #1e293b;
   }
 }
 

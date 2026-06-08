@@ -21,7 +21,7 @@ export default function PracticeBox({ box, index, onUpdate }: PracticeBoxProps) 
   };
 
   return (
-    <div className="practice-box relative border border-slate-800 bg-white overflow-hidden group">
+    <div className="practice-box relative bg-white overflow-hidden group">
       {box.imageUrl ? (
         <>
           <img
