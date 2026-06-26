@@ -9,7 +9,7 @@ interface WorksheetPreviewProps {
 
 export default function WorksheetPreview({ config, activePage, onUpdateBox }: WorksheetPreviewProps) {
   return (
-    <main className="flex-1 overflow-auto bg-slate-300 p-1 md:p-4 lg:p-8 no-print-container">
+    <main className="flex-1 overflow-auto bg-slate-300 p-1 md:p-4 lg:p-8 no-print-container print-reset">
       {/* Screen view: show only active page */}
       <div className="no-print flex justify-center items-start py-2 md:py-4">
         <div className="transform-gpu" style={{ transform: 'scale(0.5)', transformOrigin: 'top center', maxWidth: '100%' }}>
@@ -24,7 +24,7 @@ export default function WorksheetPreview({ config, activePage, onUpdateBox }: Wo
       </div>
 
       {/* Print view: render all pages */}
-      <div className="print-only">
+      <div className="print-only print-reset">
         {config.pages.map((page, i) => (
           <WorksheetPage
             key={page.id}

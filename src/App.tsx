@@ -1,8 +1,10 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import type { WorksheetConfig, PageConfig, BoxConfig } from './types';
 import ConfigPanel from './components/ConfigPanel';
 import WorksheetPreview from './components/WorksheetPreview';
 import Toolbar from './components/Toolbar';
+
+const STORAGE_KEY = 'art-worksheet-state-v1';
 
 function generateId() {
   return Math.random().toString(36).slice(2, 11);
@@ -42,9 +44,47 @@ const defaultConfig: WorksheetConfig = {
   pages: [createDefaultPage()],
 };
 
+interface PersistedState {
+  config: WorksheetConfig;
+  activePage: number;
+}
+
+function loadState(): PersistedState {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { config: defaultConfig, activePage: 0 };
+    const parsed = JSON.parse(raw) as PersistedState;
+    if (!parsed.config || !Array.isArray(parsed.config.pages) || parsed.config.pages.length === 0) {
+      return { config: defaultConfig, activePage: 0 };
+    }
+    return {
+      config: parsed.config,
+      activePage: Math.min(parsed.activePage ?? 0, parsed.config.pages.length - 1),
+    };
+  } catch {
+    return { config: defaultConfig, activePage: 0 };
+  }
+}
+
 export default function App() {
-  const [config, setConfig] = useState<WorksheetConfig>(defaultConfig);
-  const [activePage, setActivePage] = useState(0);
+  const [initial] = useState(loadState);
+  const [config, setConfig] = useState<WorksheetConfig>(initial.config);
+  const [activePage, setActivePage] = useState(initial.activePage);
+  const saveTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (saveTimer.current) window.clearTimeout(saveTimer.current);
+    saveTimer.current = window.setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ config, activePage } satisfies PersistedState));
+      } catch {
+        // storage full or unavailable — silently skip
+      }
+    }, 400);
+    return () => {
+      if (saveTimer.current) window.clearTimeout(saveTimer.current);
+    };
+  }, [config, activePage]);
 
   const updateConfig = useCallback((updates: Partial<WorksheetConfig>) => {
     setConfig(prev => ({ ...prev, ...updates }));
@@ -116,7 +156,7 @@ export default function App() {
         onSelectPage={setActivePage}
         onRemovePage={removePage}
       />
-      <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
+      <div className="flex flex-1 overflow-hidden flex-col md:flex-row print-reset">
         <ConfigPanel
           config={config}
           activePage={activePage}

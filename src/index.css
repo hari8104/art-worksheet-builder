@@ -4,15 +4,21 @@
 
 /* Print styles */
 @media print {
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  body {
+  html, body {
+    width: 100%;
+    height: auto;
     background: white !important;
     margin: 0;
     padding: 0;
+  }
+
+  #root {
+    display: block !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .no-print,
@@ -24,6 +30,16 @@
     background: white !important;
     padding: 0 !important;
     overflow: visible !important;
+    display: block !important;
+  }
+
+  /* Neutralize flex/overflow constraints that clip print pages */
+  .print-reset {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    flex: none !important;
   }
 
   .print-only {
@@ -35,14 +51,31 @@
     margin: 0 !important;
     padding: 12mm !important;
     width: 210mm !important;
-    min-height: 297mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
     page-break-after: always;
     page-break-inside: avoid;
+    break-after: page;
+    break-inside: avoid;
+    overflow: hidden;
+  }
+
+  .worksheet-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
   }
 
   .practice-box {
     border: 3px double #1e293b !important;
     break-inside: avoid;
+    overflow: hidden;
+  }
+
+  .practice-box img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   @page {
