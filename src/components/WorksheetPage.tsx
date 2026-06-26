@@ -26,7 +26,6 @@ export default function WorksheetPage({
         padding: '12mm',
         boxSizing: 'border-box',
         position: 'relative',
-        pageBreakAfter: 'always',
         display: 'flex',
         flexDirection: 'column',
       }}
