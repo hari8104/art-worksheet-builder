@@ -33,7 +33,22 @@
     display: block !important;
   }
 
-  /* Neutralize flex/overflow constraints that clip print pages */
+  /* Neutralize ALL flex/overflow/height constraints that clip print pages.
+     h-screen, overflow-hidden, flex-1, max-h-* on ancestors squeeze all
+     pages into one viewport-height box, so only one sheet prints. */
+  * {
+    overflow: visible !important;
+  }
+
+  html, body, #root,
+  #root > * {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    flex: none !important;
+    display: block !important;
+  }
+
   .print-reset {
     display: block !important;
     overflow: visible !important;
@@ -57,7 +72,7 @@
     page-break-inside: avoid;
     break-after: page;
     break-inside: avoid;
-    overflow: hidden;
+    overflow: hidden !important;
   }
 
   .worksheet-page:last-child {

@@ -147,7 +147,7 @@ export default function App() {
   }, [config.pages.length]);
 
   return (
-    <div className="flex flex-col h-screen bg-slate-100 overflow-hidden">
+    <div className="flex flex-col h-screen bg-slate-100 overflow-hidden print-reset">
       <Toolbar
         config={config}
         activePage={activePage}
