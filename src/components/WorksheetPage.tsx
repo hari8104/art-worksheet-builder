@@ -89,9 +89,10 @@ export default function WorksheetPage({
           position: 'relative',
           flex: 1,
           display: 'grid',
-          gridTemplateColumns: `repeat(${page.cols}, 1fr)`,
-          gridTemplateRows: `repeat(${page.rows}, 1fr)`,
+          gridTemplateColumns: `repeat(${page.cols}, minmax(0, 1fr))`,
+          gridTemplateRows: `repeat(${page.rows}, minmax(0, 1fr))`,
           minHeight: 0,
+          minWidth: 0,
         }}
       >
         {page.boxes.map((box, boxIndex) => (

@@ -83,14 +83,19 @@
   .practice-box {
     border: 3px double #1e293b !important;
     break-inside: avoid;
-    overflow: hidden;
+    overflow: hidden !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
   }
 
   .practice-box img {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
   }
 
   @page {
