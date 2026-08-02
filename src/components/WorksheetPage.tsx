@@ -126,6 +126,11 @@ export default function WorksheetPage({
           </div>
         )}
       </div>
+
+      {/* Page number footer */}
+      <footer className="flex-shrink-0 text-center text-xs text-slate-400 pt-2">
+        {pageIndex + 1}
+      </footer>
     </div>
   );
 }
